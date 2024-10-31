@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MagicLampButton from '../../components/MagicLampButton.astro';
+
+const { slug } = Astro.params;
+
+// This would typically come from a database or CMS
+const story = {
+  title: "The Moonlit Garden",
+  content: `Once upon a time, in a garden touched by moonlight's silver glow, there bloomed flowers unlike any others. These magical blooms opened their petals only when the full moon cast its ethereal light upon them...`,
+  author: "Eleanor Starling",
+  publishedDate: "2024-01-15",
+  category: "Fairy Tales",
+  image: "https://picsum.photos/seed/moonlit/800/600"
+};
+---
+
+<Layout title={story.title}>
+  <main class="min-h-screen py-12 px-4">
+    <article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+      <img
+        src={story.image}
+        alt={story.title}
+        class="w-full h-64 object-cover"
+      />
+      
+      <div class="p-8">
+        <div class="mb-6">
+          <span class="text-gentle-purple text-sm font-semibold">{story.category}</span>
+          <h1 class="text-4xl font-display text-deep-blue mt-2">{story.title}</h1>
+          <div class="mt-2 text-gray-600">
+            <span>By {story.author}</span>
+            <span class="mx-2">•</span>
+            <span>{new Date(story.publishedDate).toLocaleDateString()}</span>
+          </div>
+        </div>
+
+        <div class="prose max-w-none">
+          <p class="font-body text-lg leading-relaxed">{story.content}</p>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between border-t pt-6">
+          <div class="flex items-center space-x-4">
+            <button class="flex items-center space-x-2 text-gray-600 hover:text-deep-blue transition-colors">
+              <span>❤️</span>
+              <span>Like</span>
+            </button>
+            <button class="flex items-center space-x-2 text-gray-600 hover:text-deep-blue transition-colors">
+              <span>💬</span>
+              <span>Comment</span>
+            </button>
+            <button class="flex items-center space-x-2 text-gray-600 hover:text-deep-blue transition-colors">
+              <span>📤</span>
+              <span>Share</span>
+            </button>
+          </div>
+          <button class="flex items-center space-x-2 text-gray-600 hover:text-deep-blue transition-colors">
+            <span>🔊</span>
+            <span>Listen</span>
+          </button>
+        </div>
+      </div>
+    </article>
+    <MagicLampButton />
+  </main>
+</Layout>

@@ -1,0 +1,62 @@
+---
+---
+
+<button
+  id="magic-lamp"
+  class="fixed bottom-8 right-8 bg-soft-gold text-deep-blue p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-200"
+  aria-label="Scroll to top"
+>
+  <span class="text-2xl">🪔</span>
+</button>
+
+<script>
+  const lamp = document.getElementById('magic-lamp');
+  
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      lamp?.classList.remove('translate-y-20', 'opacity-0');
+    } else {
+      lamp?.classList.add('translate-y-20', 'opacity-0');
+    }
+  });
+
+  // Smooth scroll to top with animation
+  lamp?.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Add magic effect
+    const sparkle = document.createElement('div');
+    sparkle.className = 'absolute inset-0 animate-ping bg-soft-gold rounded-full';
+    lamp.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  });
+</script>
+
+<style>
+  #magic-lamp {
+    transition: transform 0.2s, opacity 0.3s, translate 0.3s;
+  }
+  
+  .translate-y-20 {
+    transform: translateY(5rem);
+  }
+  
+  .opacity-0 {
+    opacity: 0;
+  }
+  
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+</style>

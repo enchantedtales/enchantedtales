@@ -1,0 +1,53 @@
+---
+interface Props {
+  categories: string[];
+  selectedCategory: string | null;
+}
+
+const { categories, selectedCategory } = Astro.props;
+---
+
+<div class="mb-8">
+  <div class="flex flex-wrap gap-3">
+    <button
+      class={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 
+        ${!selectedCategory ? 'bg-deep-blue text-white' : 'bg-white text-deep-blue hover:bg-gentle-purple/20'}`}
+      data-category=""
+    >
+      All Stories
+    </button>
+    {categories.map(category => (
+      <button
+        class={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 
+          ${selectedCategory === category ? 'bg-deep-blue text-white' : 'bg-white text-deep-blue hover:bg-gentle-purple/20'}`}
+        data-category={category}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('[data-category]');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      const stories = document.querySelectorAll('[data-story-category]');
+      
+      stories.forEach(story => {
+        if (!category || story.getAttribute('data-story-category') === category) {
+          story.classList.remove('hidden');
+        } else {
+          story.classList.add('hidden');
+        }
+      });
+
+      // Update active state
+      buttons.forEach(btn => {
+        btn.classList.toggle('bg-deep-blue', btn.getAttribute('data-category') === category);
+        btn.classList.toggle('text-white', btn.getAttribute('data-category') === category);
+      });
+    });
+  });
+</script>

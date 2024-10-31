@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StoryCard from '../components/StoryCard.astro';
+
+const featuredStories = [
+  {
+    title: "The Moonlit Garden",
+    description: "A tale of magical flowers that bloom only under the silver light of the full moon.",
+    image: "https://picsum.photos/seed/moonlit/800/600",
+    category: "Fairy Tales",
+    href: "/stories/moonlit-garden"
+  },
+  {
+    title: "The Wise Fox's Journey",
+    description: "Follow the adventures of a clever fox as he helps forest creatures solve their problems.",
+    image: "https://picsum.photos/seed/wisefox/800/600",
+    category: "Fables",
+    href: "/stories/wise-fox"
+  },
+  {
+    title: "Dragon's Heart",
+    description: "A story about friendship between a young princess and a misunderstood dragon.",
+    image: "https://picsum.photos/seed/dragon/800/600",
+    category: "Adventures",
+    href: "/stories/dragons-heart"
+  }
+];
+---
+
+<Layout title="Welcome to EnchantedTales">
+  <main>
+    <section class="relative py-20 px-4 text-center bg-gradient-to-b from-deep-blue to-gentle-purple text-white">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl font-display mb-4">
+          Welcome to EnchantedTales
+          <span class="block text-soft-gold">Dive into Magical Stories!</span>
+        </h1>
+        <p class="text-xl">Where imagination takes flight and dreams come alive through enchanting tales.</p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-16">
+      <h2 class="text-3xl font-display text-deep-blue text-center mb-12">Featured Stories</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredStories.map(story => (
+          <StoryCard {...story} />
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-gentle-purple/10 py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-display text-deep-blue text-center mb-8">New Releases</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <StoryCard
+            title="The Whispering Woods"
+            description="Discover the secrets of an ancient forest where the trees share wisdom with those who listen."
+            image="https://picsum.photos/seed/woods/800/600"
+            category="Fantasy"
+            href="/stories/whispering-woods"
+          />
+          <StoryCard
+            title="The Time Keeper's Clock"
+            description="Join young Alice as she embarks on an adventure through time to save her grandfather's magical clock shop."
+            image="https://picsum.photos/seed/clock/800/600"
+            category="Adventures"
+            href="/stories/timekeepers-clock"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

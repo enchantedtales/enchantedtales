@@ -1,0 +1,30 @@
+---
+const links = [
+  { href: '/', text: 'Home' },
+  { href: '/stories', text: 'Stories' },
+  { href: '/about', text: 'About' },
+  { href: '/contact', text: 'Contact' }
+];
+---
+
+<nav class="bg-deep-blue text-white shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-shrink-0">
+        <a href="/" class="font-display text-2xl text-soft-gold">EnchantedTales</a>
+      </div>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          {links.map(link => (
+            <a
+              href={link.href}
+              class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gentle-purple transition-colors duration-200"
+            >
+              {link.text}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
